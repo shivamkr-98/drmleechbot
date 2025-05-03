@@ -114,7 +114,6 @@ async def id_command(client, message: Message):
 
 # 1. /adduser
 @bot.on_message(filters.command("adduser") & filters.private)
-@admin_only
 async def add_user(client, message: Message):
     try:
         _, user_id, expiration_date = message.text.split()
@@ -187,11 +186,11 @@ async def my_plan(client, message: Message):
 @bot.on_message(filters.command("add_channel"))
 async def add_channel(client, message: Message):
     user_id = str(message.from_user.id)
-    subscription_data = read_subscription_data()
+ #   subscription_data = read_subscription_data()
 
-    if not any(user[0] == user_id for user in subscription_data):
-        await message.reply_text("**❌ You are not a premium user.**")
-        return
+#    if not any(user[0] == user_id for user in subscription_data):
+#        await message.reply_text("**❌ You are not a premium user.**")
+  #      return
 
     try:
         _, channel_id = message.text.split()
@@ -268,10 +267,10 @@ async def restart_handler(_, m):
 async def account_login(bot: Client, m: Message):
     #if m.chat.type == "private":
     user_id = str(m.from_user.id)
-    subscription_data = read_subscription_data()
-    if not any(user[0] == user_id for user in subscription_data):
-        await m.reply_text("❌ You are not a premium user. Please upgrade your subscription! 💎")
-        return          
+ #   subscription_data = read_subscription_data()
+#    if not any(user[0] == user_id for user in subscription_data):
+   #     await m.reply_text("❌ You are not a premium user. Please upgrade your subscription! 💎")
+  #      return          
     editable = await m.reply_text("**Please Send TXT file for download**")
     input: Message = await bot.listen(editable.chat.id)
     y = await input.download()
